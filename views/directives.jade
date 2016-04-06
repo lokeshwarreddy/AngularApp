@@ -1,0 +1,14 @@
+extends layout
+block append head
+    script(src='javascripts/controllers/MainController.js')
+block content
+    div(id="todoPanel", class="panel" ng-controller='MainController')
+        h3(class="panel-header") ToDo List
+        div There are {{todos.length}} items
+        div There are&nbsp;
+            span(ng-bind='todos.length')
+            | &nbsp;items
+        div(ng-bind-template='First: {{todos[0].action}}.  Second: {{todos[1].action}}')
+        div(ng-non-bindable) AngularJS uses {{and}} characters for templates.
+
+

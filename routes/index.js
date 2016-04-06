@@ -10,4 +10,8 @@ router.get('/cells',function(req,res,next){
   res.render('cells');
 })
 
+router.get('/directives',function(req,res,next){
+  res.render('directives');
+})
+
 module.exports = router;
