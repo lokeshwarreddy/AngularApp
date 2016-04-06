@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  button(id="myBtn") Open Model
+  div(id="myModal" class="modal")
+    div(class="modal-content")
+        div(class="modal-header")
+            span(class="close") X
+            h2 Model Header
+        div(class="modal-body")
+            p Some text in the model
+            p Some other text...
+        div(class="modal-footer")
+            h3 Model Footer
+
+  script(src='javascripts/angularapp.js')
