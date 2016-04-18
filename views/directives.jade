@@ -4,11 +4,56 @@ block append head
 block content
     div(id="todoPanel", class="panel" ng-controller='MainController')
         h3(class="panel-header") ToDo List
-        div There are {{todos.length}} items
-        div There are&nbsp;
-            span(ng-bind='todos.length')
-            | &nbsp;items
-        div(ng-bind-template='First: {{todos[0].action}}.  Second: {{todos[1].action}}')
-        div(ng-non-bindable) AngularJS uses {{and}} characters for templates.
+        div(class='well')
+            div The first item is {{todos[0].action}}
+        div(class='form-group well')
+            label(for='firstItem') Set First Item:
+            input(type='text', class='form-control', id='firstItem', ng-model="todos[0].action")
 
+        div(class='well well-lg')
+            table(class='table table-responsive')
+                tr
+                    th #
+                    th Action
+                    th Complete
+                tr(ng-repeat='item in todos', ng-class="$odd ? 'oddTableRow' : 'evenTableRow'")
+                    td {{$index+1}}
+                    td {{item.action}}
+                    td #[span(ng-if='$first || $last') {{item.complete}}]
 
+        div(class='well well-small')
+            div(ng-repeat='item in todos')
+                div(ng-repeat='(key,value) in item') {{key}}={{value}}
+
+        div(class='well')
+            ng-include(src="'tabledata'")
+
+        div(class='well')
+            div(class="checkbox")
+                label
+                    input(type='checkbox' ng-model='showList')
+                    Use the list view
+        div(class='well')
+            ng-include(src='viewFile()')
+
+        div(class='well')
+            div(class='radio', ng-repeat="button in ['None','Table','List']")
+                label
+                    input(type='radio', name='buttonRadio', ng-model='data.mode', value="{{button}}", ng-checked="$first")
+                    {{button}}
+        div(ng-switch on="data.mode")
+            div(ng-switch-when="Table")
+                table(class='table')
+                    tr
+                        th #
+                        th Action
+                        th Complete
+                    tr(ng-repeat='item in todos')
+                        td {{$index+1}}
+                        td(ng-repeat='prop in item') {{prop}}
+            div(ng-switch-when="List")
+                ol
+                    li(ng-repeat="item in todos")
+                        {{item.action}}
+                        span(ng-if="$first || $last") {{item.complete}}
+            div(ng-switch-default) Select another option to display a layout

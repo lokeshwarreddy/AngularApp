@@ -1,0 +1,22 @@
+//
+   Created by Lokesh Reddy on 4/11/2016.
+extends layout
+block append head
+    script(src="javascripts/controllers/MainController.js")
+block content
+    div(class="container", ng-controller="MainController")
+        div(class="panel")
+            form(name="myform" novalidate)
+                div(class="well")
+                    div(class="form-group")
+                        label Name:
+                        input(name="userName", class="form-control", required, ng-model="newUser.name")
+                    div(class="form-group")
+                        label Email:
+                        input(name="userPassword", type="email", class="form-control", required, ng-model="newUser.email")
+                    div(class="checkbox")
+                        label #[input(name="agreed", type="checkbox", required, ng-model="newUser.agreed")] I agree to terms and conditions.
+                    button(type="submit", class="btn btn-info btn-block", ng-disabled="myform.$invalid") OK
+                div(class="well")
+                    span Message: {{message}}
+                    div Valid: {{myform.$valid}}

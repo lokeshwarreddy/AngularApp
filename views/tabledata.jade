@@ -1,0 +1,10 @@
+//
+   Created by Lokesh Reddy on 4/6/2016.
+table(class='table')
+    tr
+        th #
+        th Action
+        th Complete
+    tr(ng-repeat='item in todos')
+        td {{$index+1}}
+        td(ng-repeat='prop in item') {{prop}}

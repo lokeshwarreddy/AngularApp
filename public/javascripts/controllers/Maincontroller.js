@@ -9,4 +9,17 @@ angular.module('exampleApp').controller('MainController', function ($scope) {
         {action: "Buy flowers", complete: false},
         {action: "Call family", complete: false}
     ]
+
+    $scope.viewFile = function () {
+        return $scope.showList ? "listdata" : "tabledata";
+    }
+
+    $scope.addNewItem = function (newItem) {
+        if (angular.isUndefined(newItem) || angular.isUndefined(newItem.action))
+            return;
+        $scope.todos.push({
+            action: newItem.action + " (" + newItem.action + ")",
+            complete: false
+        })
+    }
 })

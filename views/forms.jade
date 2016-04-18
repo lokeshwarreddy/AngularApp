@@ -1,0 +1,33 @@
+//
+   Created by Lokesh Reddy on 4/11/2016.
+extends layout
+block append head
+    script(src="javascripts/controllers/MainController.js")
+block content
+    div(class="panel", ng-controller="MainController")
+        h3(class="panel-header") ToDo List #[span(class="label label-info"){{(todos|filter:{complete:'false'}).length}}]
+        div(class="row")
+            div(class="col-xs-3")
+                div(class="well")
+                    div(class="form-group")
+                        label Action:
+                        input(class="form-control", ng-model="newItem.action")
+                    div(class="form-group")
+                        label Location:
+                        select(class="form-control", ng-model="newItem.location")
+                            option(value="Home") Home
+                            option(value="Office") Office
+                            option(value="Mall") Mall
+                    button(type="button" class="btn btn-primary btn-block" ng-click="addNewItem(newItem)") Add
+            div(class="col-xs-9")
+                table(class="table")
+                    thead
+                        tr
+                            th #
+                            th Action
+                            th Complete
+                    tbody
+                        tr(ng-repeat="item in todos")
+                            td {{$index+1}}
+                            td {{item.action}}
+                            td {{item.complete}}
