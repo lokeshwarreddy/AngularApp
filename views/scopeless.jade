@@ -1,0 +1,14 @@
+//
+   Created by Lokesh Reddy on 4/20/2016.
+extends layout
+block append head
+    script(src='javascripts/controllers/MainController.js')
+block content
+    div(class='well', ng-controller='scopelessCtrl as ctrl')
+        h4 Scopeless Controller
+        div(class='input-group')
+            span(class='input-group-btn')
+                button(class='btn btn-default', type='button', ng-click='ctrl.reverseText()') Reverse
+            input(class='form-control', ng-model='ctrl.dataValue')
+
+

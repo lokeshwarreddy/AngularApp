@@ -1,0 +1,45 @@
+//
+   Created by Lokesh Reddy on 4/18/2016.
+extends layout
+block append head
+    script(src='javascripts/controllers/MainController.js')
+block content
+    div(class='container-fluid')
+        div(class='well', ng-controller='MainController')
+            h3 Billing Zip Code
+            div(class='form-group')
+                input(ng-model='zip', class='form-control')
+            button(class='btn btn-primary', ng-click="setAddress('billingZip',zip)") Save Billing
+
+        div(class='well', ng-controller='MainController')
+            h3 Shipping Zip Code
+            div(class='form-group')
+                input(ng-model='zip', class='form-control')
+            button(class='btn btn-primary', ng-click="copyAddress()") Use Billing
+            span &nbsp;
+            button(class='btn btn-primary', ng-click="setAddress('shippingZip',zip)") Save Shipping
+
+
+        div(class="panel", ng-controller="MainController")
+            div(class="well")
+                h4 Top Level Controller
+                div(class="input-group")
+                    span(class="input-group-btn")
+                        button(class='btn btn-default', ng-click="reverseText()") Reverse
+                        button(class='btn btn-default', ng-click="changeCase()") Case
+                    input(ng-model='data.dataValue', class='form-control')
+            div(class="well", ng-controller="firstChildCtrl")
+                h4 First Level Controller
+                div(class="input-group")
+                    span(class='input-group-btn')
+                        button(class='btn btn-default', ng-click="reverseText()") Reverse
+                        button(class='btn btn-default', ng-click='changeCase()') Case
+                    input(ng-model='data.dataValue', class='form-control')
+            div(class="well", ng-controller="secondChildCtrl")
+                div(class="input-group")
+                    span(class="input-group-btn")
+                        button(class='btn btn-default', ng-click='reverseText()') Reverse
+                        button(class='btn btn-default', ng-click='changeCase()') Case
+                        button(class='btn btn-default', ng-click='shiftFour()') Shift
+                    input(class='form-control', ng-model='data.dataValue')
+

@@ -1,0 +1,28 @@
+//
+   Created by Lokesh Reddy on 4/21/2016.
+
+extends layout
+block append head
+    script(src='javascripts/controllers/FilterController.js')
+    //script(src='javascripts/angular-locale_fr-fr.js')
+block content
+    div(class='panel panel-default', ng-controller='FilterController')
+        div(class='panel-heading')
+            h3 Products #[span(class='label label-primary') {{products.length}}]
+        div(class='panel-body')
+            span Limit #[select(ng-model='limitVal',ng-options='r for r in limitRange')]
+            span(class='pull-right') Category #[select(ng-model='filterCategory',ng-options='p.category as p.category for p in products|unique:"category"')]
+        div(class='panel-body')
+            table(class='table table-striped table-bordered table-condensed')
+                thead
+                    tr
+                        td Name
+                        td Category
+                        td Expiry
+                        td(class='text-right') Price
+                tbody
+                    tr(ng-repeat='p in products|take:2:limitVal')
+                        td {{p.name|labelCase}}
+                        td {{p.category|labelCase:'true'}}
+                        td {{getExpiryDate(p.expiry) | date:'MMM dd yyyy'}}
+                        td(class='text-right') {{p.price | currency}}

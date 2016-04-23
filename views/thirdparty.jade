@@ -1,0 +1,21 @@
+//
+   Created by Lokesh Reddy on 4/21/2016.
+extends layout
+block append head
+    script(src='/lib/jquery/dist/jquery.min.js')
+    script(src='/lib/jquery-ui/jquery-ui.min.js')
+    link(rel='stylesheet', href='/lib/jquery-ui/themes/sunny/jquery-ui.min.css')
+    script(src='javascripts/controllers/MainController.js')
+    script(src='javascripts/thirdparty.js')
+block content
+    div(id='angularRegion', class='well', ng-controller='thirdPartyCtrl')
+        h2 Angular JS
+        div(class='checkbox')
+            label
+                input(type='checkbox', ng-model='dataValue')
+                | Enable Button
+        p Click counter: {{clickCounter}}
+
+    div(id='jqui', class='well')
+        h2 jQuery UI
+        button Click Me!
